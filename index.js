@@ -7,7 +7,7 @@ module.exports = function (options) {
   options.wait = !!options.wait;
   options.indexRootPath = !!options.indexRootPath;
 
-  var cloudfront = new aws.CloudFront();
+  var cloudfront = new aws.CloudFront({ region: options.region });
 
   if ('credentials' in options) {
     cloudfront.config.update({
@@ -22,11 +22,6 @@ module.exports = function (options) {
     });
   }
 
-  if ('region' in options)  {
-    cloudfront.config.update({
-      region: options.region
-    })
-  };
   var files = [];
 
   var complain = function (err, msg, callback) {
