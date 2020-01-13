@@ -22,6 +22,11 @@ module.exports = function (options) {
     });
   }
 
+  if ('region' in options)  {
+    cloudfront.config.update({
+      region: options.region
+    })
+  };
   var files = [];
 
   var complain = function (err, msg, callback) {
